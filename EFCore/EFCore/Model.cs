@@ -8,11 +8,17 @@ namespace EFCore
     public class ApplicatContext : DbContext
     {
         public DbSet<Tester> Testers { get; set; }
+
+        public ApplicatContext(DbContextOptions<ApplicatContext> options)
+            :base(options)
+        {
+            Database.EnsureCreated();
+        }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(ConfigurationManager.ConnectionStrings["SystemManagerTestsDatabase"].ConnectionString);
-        }
+        } */
     }
 
     [Table("tester")]
